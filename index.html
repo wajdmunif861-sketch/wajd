@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wajd | Access Capital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .app-container { max-width: 450px; margin: 0 auto; background-color: #1e1e1e; min-height: 100vh; padding-bottom: 80px; position: relative; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #2d2d2d; }
+        .brand-name { font-size: 1.2rem; font-weight: bold; color: #ff9f43; cursor: pointer; }
+        .balance-card { background: linear-gradient(135deg, #2c1f17 0%, #1a1512 100%); border: 1px solid #3d2d22; border-radius: 15px; padding: 20px; margin: 15px; text-align: center; }
+        .balance-amount { font-size: 2rem; color: #ff9f43; font-weight: bold; }
+        
+        /* شبكة الأيقونات */
+        .grid-menu { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 15px; }
+        .menu-item { text-align: center; color: #fff; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: none; border: none; }
+        .menu-icon { width: 50px; height: 50px; background-color: #ff9f43; color: #121212; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px auto; font-size: 1.3rem; }
+        
+        .banner-img { width: calc(100% - 30px); margin: 0 15px; border-radius: 15px; height: 150px; object-fit: cover; }
+        .project-section { padding: 20px 15px; }
+        .project-card { background-color: #252525; border-radius: 12px; padding: 15px; margin-top: 10px; border-left: 5px solid #ff9f43; }
+        
+        /* شريط التنقل السفلي */
+        .nav-bottom { position: fixed; bottom: 0; width: 100%; max-width: 450px; background-color: #1a1a1a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #2d2d2d; z-index: 1000; }
+        .nav-item { color: #888; text-decoration: none; text-align: center; font-size: 0.8rem; cursor: pointer; background: none; border: none; width: 100%; }
+        .nav-item.active { color: #ff9f43; }
+        
+        .app-page { display: none; }
+        .app-page.active-page { display: block; }
+        .page-padding { padding: 20px; }
+        .btn-back { color: #ff9f43; background: none; border: none; font-size: 1.1rem; padding: 0; cursor: pointer; }
+        
+        /* فيديو توضيحي */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background-color: #000; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        /* قائمة المهام */
+        .task-card { background-color: #252525; border-radius: 10px; padding: 12px; margin-bottom: 10px; border-right: 4px solid #28a745; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <div id="page-home" class="app-page active-page">
+        <div class="header-top">
+            <div class="brand-name" onclick="switchPage('home')"><i class="fa-solid fa-chart-line me-2"></i>wajd</div>
+            <div><span class="badge bg-secondary">عربي <i class="fa-solid fa-globe"></i></span></div>
+        </div>
+        <div class="px-3 py-1 bg-dark text-warning" style="font-size: 0.8rem;">
+            <marquee direction="right">نظام سحب آلي بالكامل: تصل الأموال في غضون دقيقة واحدة.</marquee>
+        </div>
+        <div class="balance-card">
+            <div class="text-muted mb-1" style="font-size: 0.9rem;">taimele2005@gmail.com</div>
+            <div class="text-white-50 small mb-2">رصيد الحساب الحالي</div>
+            <div id="main-balance" class="balance-amount">$0.01</div>
+        </div>
+        
+        <div class="grid-menu">
+            <button class="menu-item" onclick="switchPage('recharge')">
+                <div class="menu-icon"><i class="fa-solid fa-wallet"></i></div>تعبئة رصيد
+            </button>
+            <button class="menu-item" onclick="switchPage('withdraw')">
+                <div class="menu-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>ينسحب
+            </button>
+            <button class="menu-item" onclick="switchPage('app-download')">
+                <div class="menu-icon"><i class="fa-solid fa-download"></i></div>برنامج
+            </button>
+            <button class="menu-item" onclick="switchPage('company')">
+                <div class="menu-icon"><i class="fa-solid fa-building"></i></div>ملف الشركة
+            </button>
+        </div>
+        
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=500&q=80" alt="Banner" class="banner-img">
+        
+        <div class="project-section">
+            <h5>المشروع الموصى به</h5>
+            <div class="project-card d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1 text-warning">VIP 1 استثمار الذكاء الاصطناعي</h6>
+                    <small class="text-muted">الدخل اليومي: $3.00</small>
+                </div>
+                <button class="btn btn-warning btn-sm px-3" onclick="switchPage('project', true)">عرض التفاصيل</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-recharge" class="app-page page-padding">
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn-back me-3" onclick="switchPage('home')"><i class="fa-solid fa-arrow-right"></i></button>
+            <h4 class="mb-0 text-warning">تعبئة الرصيد</h4>
+        </div>
+        <div class="card bg-dark text-white p-3 border-secondary mb-3">
+            <p class="small text-muted mb-2">عنوان شحن USDT (TRC20):</p>
+            <div class="input-group">
+                <input type="text" class="form-control bg-secondary text-white border-0" value="TYG7x89WqPaZmx11vK92mNqPqWzX" readonly>
+                <button class="btn btn-warning" onclick="alert('تم نسخ عنوان الشحن!')">نسخ</button>
+            </div>
+        </div>
+        <button class="btn btn-warning w-100 py-2 fw-bold" onclick="alert('تم تقديم طلب الشحن، يرجى انتظار التأكيد')">تأكيد الشحن</button>
+    </div>
+
+    <div id="page-withdraw" class="app-page page-padding">
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn-back me-3" onclick="switchPage('home')"><i class="fa-solid fa-arrow-right"></i></button>
+            <h4 class="mb-0 text-warning">سحب الأموال</h4>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="أدخل الكمية المراد سحبها">
+        </div>
+        <button class="btn btn-warning w-100 py-2 fw-bold" onclick="alert('رصيدك الحالي غير كافٍ لإتمام السحب!')">تقديم طلب السحب</button>
+    </div>
+
+    <div id="page-app-download" class="app-page page-padding text-center">
+        <div class="d-flex align-items-center mb-5 text-end">
+            <button class="btn-back me-3" onclick="switchPage('home')"><i class="fa-solid fa-arrow-right"></i></button>
+            <h4 class="mb-0 text-warning">تحميل التطبيق</h4>
+        </div>
+        <i class="fa-solid fa-robot fa-4x text-success mb-3"></i>
+        <h5>تطبيق wajd الرسمي لهواتف أندرويد</h5>
+        <button class="btn btn-success mt-3" onclick="alert('سيبدأ تحميل ملف APK قريباً...')">تحميل الآن</button>
+    </div>
+
+    <div id="page-company" class="app-page page-padding">
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn-back me-3" onclick="switchPage('home')"><i class="fa-solid fa-arrow-right"></i></button>
+            <h4 class="mb-0 text-warning">ملف شركة wajd</h4>
+        </div>
+        <p>تأسست منصة wajd للاستثمار لتوفير حلول مالية تضمن عوائد يومية مستقرة عبر تقنيات التداول الذكي وحماية الأصول الرقمية بالكامل.</p>
+    </div>
+
+    <div id="page-project" class="app-page page-padding">
+        <h4 class="text-warning mb-3"><i class="fa-solid fa-diagram-project me-2"></i> قاعة المشاريع الاستثمارية</h4>
+        
+        <p class="small text-muted mb-2">شاهد فيديو شرح المنصة وآلية الاستثمار المتطورة:</p>
+        <div class="video-container mb-4">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+        
+        <h5>الباقات المتاحة:</h5>
+        <div class="project-card">
+            <div class="d-flex justify-content-between">
+                <h6 class="text-warning">باقة VIP 1 الذكية</h6>
+                <span class="badge bg-success">نشط</span>
+            </div>
+            <p class="text-muted small my-2">التكلفة: $10.00 | الدخل اليومي: $3.00</p>
+            <button class="btn btn-warning btn-sm w-100" onclick="buyVip(10, 3)">استثمار الآن</button>
+        </div>
+        
+        <div class="project-card mt-3">
+            <div class="d-flex justify-content-between">
+                <h6 class="text-secondary">باقة VIP 2 المتقدمة</h6>
+                <span class="badge bg-secondary">مغلق</span>
+            </div>
+            <p class="text-muted small my-2">التكلفة: $50.00 | الدخل اليومي: $15.00</p>
+            <button class="btn btn-secondary btn-sm w-100" onclick="buyVip(50, 15)">فتح الباقة</button>
+        </div>
+    </div>
+
+    <div id="page-team" class="app-page page-padding">
+        <h4 class="text-warning mb-3"><i class="fa-solid fa-users me-2"></i> تقرير ومهام الفريق</h4>
+        
+        <div class="card bg-dark text-white p-3 border-secondary mb-4">
+            <div class="row text-center">
+                <div class="col-6 border-end border-secondary">
+                    <small class="text-muted">حجم الفريق</small>
+                    <h5 class="text-warning mt-1">0</h5>
+                </div>
+                <div class="col-6">
+                    <small class="text-muted">أرباح الفريق</small>
+                    <h5 class="text-success mt-1">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <h5 class="mb-3">المهام الاستثمارية اليومية:</h5>
+        
+        <div class="task-card d-flex justify-content-between align-items-center">
+            <div>
+                <h6 class="mb-1" style="font-size:0.9rem;">مهمة التفاعل اليومي وتدقيق البيانات</h6>
+                <small class="text-warning">المكافأة: $1.50</small>
+            </div>
+            <button class="btn btn-success btn-sm" onclick="completeTask(1.5, this)">تنفيذ</button>
+        </div>
+
+        <div class="task-card d-flex justify-content-between align-items-center" style="border-right-color: #ffc107;">
+            <div>
+                <h6 class="mb-1" style="font-size:0.9rem;">مشاركة رابط الدعوة في المجموعات</h6>
+                <small class="text-warning">المكافأة: $2.00</small>
+            </div>
+            <button class="btn btn-warning btn-sm" onclick="completeTask(2.0, this)">تنفيذ</button>
+        </div>
+    </div>
+
+    <div id="page-profile" class="app-page page-padding">
+        <div class="text-center mb-4">
+            <div class="bg-secondary rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 65px; height: 65px;">
+                <i class="fa-solid fa-user fa-2x text-light"></i>
+            </div>
+            <h5 class="mt-2 mb-1">taimele2005@gmail.com</h5>
+            <span class="badge bg-warning text-dark">المستوى: VIP 1</span>
+        </div>
+        
+        <div class="card bg-dark text-white p-3 border-secondary mb-3">
+            <small class="text-muted">إجمالي الأرباح المتراكمة</small>
+            <h3 id="profile-balance" class="text-warning mt-1">$0.01</h3>
+        </div>
+        
+        <ul class="list-group list-group-flush bg-transparent">
+            <li class="list-group-item bg-transparent text-white border-secondary" onclick="alert('سجل المحفظة فارغ حالياً')"><i class="fa-solid fa-file-invoice-dollar me-2 text-warning"></i> السجلات المالية</li>
+            <li class="list-group-item bg-transparent text-white border-secondary" onclick="alert('أنت تعمل على النسخة التجريبية الأحدث')"><i class="fa-solid fa-gear me-2 text-warning"></i> إعدادات المنصة</li>
+        </ul>
+    </div>
+
+    <div class="nav-bottom">
+        <button id="btn-nav-home" class="nav-item active" onclick="switchPage('home', true)">
+            <i class="fa-solid fa-house d-block mb-1"></i>بيت
+        </button>
+        <button id="btn-nav-project" class="nav-item" onclick="switchPage('project', true)">
+            <i class="fa-solid fa-diagram-project d-block mb-1"></i>مشروع
+        </button>
+        <button id="btn-nav-team" class="nav-item" onclick="switchPage('team', true)">
+            <i class="fa-solid fa-users d-block mb-1"></i>فريق
+        </button>
+        <button id="btn-nav-profile" class="nav-item" onclick="switchPage('profile', true)">
+            <i class="fa-solid fa-user d-block mb-1"></i>أنا
+        </button>
+    </div>
+
+</div>
+
+<script>
+    let currentBalance = 0.01;
+
+    function updateBalanceDisplay() {
+        document.getElementById('main-balance').innerText = '$' + currentBalance.toFixed(2);
+        document.getElementById('profile-balance').innerText = '$' + currentBalance.toFixed(2);
+    }
+
+    function switchPage(pageId, isBottomNav = false) {
+        const pages = document.querySelectorAll('.app-page');
+        pages.forEach(page => page.classList.remove('active-page'));
+        const targetPage = document.getElementById('page-' + pageId);
+        if (targetPage) targetPage.classList.add('active-page');
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => item.classList.remove('active'));
+        if (isBottomNav) {
+            const activeBtn = document.getElementById('btn-nav-' + pageId);
+            if (activeBtn) activeBtn.classList.add('active');
+        } else if (pageId === 'home') {
+            document.getElementById('btn-nav-home').classList.add('active');
+        }
+    }
+
+    function completeTask(amount, buttonElement) {
+        currentBalance += amount;
+        updateBalanceDisplay();
+        buttonElement.innerText = "تمت بنجاح";
+        buttonElement.disabled = true;
+        buttonElement.classList.replace('btn-success', 'btn-secondary');
+        buttonElement.classList.replace('btn-warning', 'btn-secondary');
+        alert('تهانينا! تم إكمال المهمة وإضافة ' + amount + '$ إلى رصيدك بنجاح.');
+    }
+
+    function buyVip(cost, dailyReturn) {
+        alert('طلب الاستثمار في باقة بقيمة ' + cost + '$ قيد المعالجة. سيبدأ حساب الدخل اليومي بمعدل ' + dailyReturn + '$ فوراً بعد مراجعة شحن المحفظة.');
+    }
+</script>
+
+</body>
+</html>
